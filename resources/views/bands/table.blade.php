@@ -17,7 +17,11 @@
             <td>{{ $band->name }}</td>
             <td>{{ $band->genres()->get()->implode('name',', ') }}</td>
             <td>
-                <a href="" class="btn btn-outline-success">Edit</a>
+                {{--
+                    untuk route bisa $band->slug tapi karna sudah di identify di route {band:slug},
+                    maka data yang di get url otomatis menjadi slug, jadi cukup $band saja.
+                --}}
+                <a href="{{ route('bands.edit', $band) }}" class="btn btn-outline-success">Edit</a>
                 <a href="" class="btn btn-outline-danger">Delete</a>
             </td>
         </tr>

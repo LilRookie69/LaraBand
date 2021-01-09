@@ -16,9 +16,15 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashbaord');
 
     route::prefix('bands')->group(function () {
+        //Create Data
         Route::get('create', [BandController::class, 'create'])->name('bands.create');
         Route::post('create', [BandController::class, 'store']);
 
+        //View Table
         Route::get('table', [BandController::class, 'table'])->name('bands.table');
+
+        //Edit Data
+        Route::get('{band:slug}/edit', [BandController::class, 'edit'])->name('bands.edit');
+        Route::put('{band:slug}/edit', [BandController::class, 'update']);
     });
 });
