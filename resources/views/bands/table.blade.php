@@ -24,11 +24,15 @@
         @endforeach
     </tbody>
 </table>
+{{ $bands->links() }}
+{{--
+    untuk paginate kalo dia datanya ga ke show coba di buat di controllernya jadi paginate(1)
+    trus data minimal 2,soalnya dia kalo datanya kaga banyak dia ga muncul
+--}}
 {{--
     untuk membuat pagination, kalo stylenya ga masuk trus jadi aneh wajar
     karna bawaannya laravel 8 itu tailwind bukan bootstrap jadi harus
     di ganti dulu di /app/Providers/AppServiceProvider di bagian
     function bootnya tambahkan paginator bootstrap
 --}}
-{{ $bands->links() }}
 @endsection
