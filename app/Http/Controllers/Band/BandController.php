@@ -35,4 +35,11 @@ class BandController extends Controller
 
         return back()->with('success', 'Band was Created');
     }
+
+    public function table()
+    {
+        return view('bands.table', [
+            'bands' => Band::latest()->paginate(16)
+        ]);
+    }
 }
