@@ -43,7 +43,7 @@ class BandController extends Controller
     public function table()
     {
         return view('bands.table', [
-            'bands' => Band::latest()->paginate(16),
+            'bands' => Band::orderBy('id', 'ASC')->paginate(5),
         ]);
     }
 
@@ -94,5 +94,12 @@ class BandController extends Controller
         $band->genres()->sync(request('genres'));
 
         return back()->with('success', 'Band was Updated');
+    }
+
+    public function destroy(Band $band)
+    {
+        Storage::delete($band->thumbnail);
+        $band->genres()->detach();
+        $band->delete();
     }
 }

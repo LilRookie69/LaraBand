@@ -13,7 +13,7 @@
     <tbody>
         @foreach ($bands as $band)
         <tr>
-            <td>{{ $bands->count() * ($bands->currentPage() - 1) + $loop->iteration }}</td>
+            <td>{{ ($bands->currentPage() - 1) * $bands->perPage() + $loop->iteration }}</td>
             <td>{{ $band->name }}</td>
             <td>{{ $band->genres()->get()->implode('name',', ') }}</td>
             <td>
@@ -22,7 +22,7 @@
                     maka data yang di get url otomatis menjadi slug, jadi cukup $band saja.
                 --}}
                 <a href="{{ route('bands.edit', $band) }}" class="btn btn-outline-success">Edit</a>
-                <a href="" class="btn btn-outline-danger">Delete</a>
+                <div endpoint="{{ route('bands.delete', $band) }}" class="delete d-inline"></div>
             </td>
         </tr>
         @endforeach
